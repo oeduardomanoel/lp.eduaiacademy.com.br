@@ -1,0 +1,1466 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EduAi Academy</title>
+  <meta name="description"
+    content="EduAi Academy: aprenda a usar o Claude como operador, criar sistemas com IA e automatizar sua rotina com método prático."
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #080808;
+      --bg-soft: #111111;
+      --panel: rgba(20, 20, 20, 0.6);
+      --panel-border: rgba(255, 255, 255, 0.08);
+      --line: rgba(255, 255, 255, 0.1);
+      --text: #f5f5f7;
+      --muted: #a1a1a6;
+      --accent: #da7756;
+      --accent-soft: #f0a084;
+      --ease-out: cubic-bezier(0.25, 1, 0.5, 1);
+      --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+
+    /* Premium subtle noise (Emil Kowalski style matte finish) */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      opacity: 0.02;
+      z-index: 9999;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* Smooth, premium light glows mapping */
+    .page-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 50% -20%, rgba(218, 119, 86, 0.15), transparent 50%),
+        radial-gradient(circle at 80% 60%, rgba(218, 119, 86, 0.08), transparent 40%),
+        var(--bg);
+    }
+
+    .site {
+      width: min(1140px, 92vw);
+      margin: 0 auto;
+      padding-bottom: 80px;
+    }
+
+    @keyframes gracefulReveal {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+        filter: blur(4px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    .section {
+      padding: clamp(4rem, 8vw, 8rem) 0;
+      animation: gracefulReveal 1s var(--ease-out) both;
+    }
+
+    .section:nth-child(1) {
+      animation-delay: 0.1s;
+      padding-top: clamp(2rem, 4vw, 4rem);
+    }
+
+    .section:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .section:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .section:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    .narrow {
+      width: min(850px, 100%);
+      margin: 0 auto;
+    }
+
+    .kicker {
+      display: inline-flex;
+      width: max-content;
+      align-self: flex-start;
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(218, 119, 86, 0.1);
+      border: 1px solid rgba(218, 119, 86, 0.2);
+      color: var(--accent-soft);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    }
+
+    .hero .kicker {
+      justify-self: center;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4.8rem);
+      font-weight: 700;
+      color: #fff;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      font-weight: 700;
+      color: #fff;
+    }
+
+    h3 {
+      font-size: clamp(1.2rem, 2vw, 1.5rem);
+      font-weight: 600;
+      color: #f0f0f0;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.2vw, 1.1rem);
+    }
+
+    .accent {
+      color: var(--accent);
+    }
+
+    /* Emil Kowalski style panels: glassmorphism, subtle borders, deep shadow */
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 20px;
+      padding: clamp(1.5rem, 3vw, 2.5rem);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.03), transparent 50%);
+      pointer-events: none;
+    }
+
+    .panel:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .hero {
+      min-height: 75vh;
+      display: grid;
+      align-content: center;
+      text-align: center;
+      gap: 1.2rem;
+    }
+
+    .logo {
+      width: clamp(90px, 12vw, 140px);
+      margin: 0 auto;
+      display: block;
+      opacity: 0.9;
+    }
+
+    .typing {
+      border-right: 2px solid var(--accent);
+      padding-right: 0.15em;
+      animation: caret 800ms step-end infinite;
+    }
+
+    .typing.is-done {
+      border-right-color: transparent;
+      animation: none;
+    }
+
+    @keyframes caret {
+
+      0%,
+      45% {
+        border-right-color: var(--accent);
+      }
+
+      55%,
+      100% {
+        border-right-color: transparent;
+      }
+    }
+
+    .hero .lead {
+      max-width: 65ch;
+      margin: 0 auto;
+      font-size: 1.15rem;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      border-radius: 999px;
+      border: 0;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      font-size: 1.05rem;
+      padding: 1rem 2.2rem;
+      transition: all 200ms var(--ease-out);
+      cursor: pointer;
+    }
+
+    .cta-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(218, 119, 86, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .cta:active {
+      transform: scale(0.97);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .cta-primary:hover {
+        background: #e38a6c;
+        box-shadow: 0 12px 32px rgba(218, 119, 86, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+        transform: translateY(-1px);
+      }
+    }
+
+    .micro-proof {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .micro-proof span {
+      border: 1px solid var(--panel-border);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.02);
+      padding: 0.8rem;
+      font-size: 0.85rem;
+      color: #ececec;
+      flex: 1 1 auto;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 500;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(8px);
+    }
+
+    .vsl {
+      width: min(980px, 100%);
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .vsl-screen {
+      margin-top: 1.5rem;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 20px;
+      border: 1px solid var(--panel-border);
+      background: #000;
+      display: grid;
+      place-items: center;
+      position: relative;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+    }
+
+    .vsl-screen::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(218, 119, 86, 0.1), transparent 60%);
+    }
+
+    .play-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(20, 20, 20, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      padding: 0.8rem 1.4rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      z-index: 10;
+      cursor: pointer;
+      transition: transform 0.2s var(--ease-spring);
+      backdrop-filter: blur(10px);
+    }
+
+    .play-pill:hover {
+      transform: scale(1.05);
+      background: rgba(30, 30, 30, 0.9);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .play-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .caption {
+      margin-top: 1.2rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .copy-box {
+      display: grid;
+      align-content: center;
+      gap: 1.2rem;
+    }
+
+    /* Mac OS Style Clean Terminal */
+    .terminal {
+      border: 1px solid var(--panel-border);
+      border-radius: 16px;
+      overflow: hidden;
+      background: rgba(10, 10, 10, 0.8);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+    }
+
+    .term-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid var(--line);
+      background: rgba(20, 20, 20, 0.6);
+      color: #888;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    .lights {
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .lights span {
+      width: 0.6rem;
+      height: 0.6rem;
+      border-radius: 999px;
+    }
+
+    .lights span:nth-child(1) {
+      background: #ff5f56;
+    }
+
+    .lights span:nth-child(2) {
+      background: #ffbd2e;
+    }
+
+    .lights span:nth-child(3) {
+      background: #27c93f;
+    }
+
+    .term-body {
+      margin: 0;
+      padding: 1.5rem;
+      font-family: "SFMono-Regular", Consolas, Menlo, monospace;
+      font-size: 0.85rem;
+      color: #ececec;
+      line-height: 1.6;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    aside[aria-label="Exemplo de uso ruim"] .term-body {
+      color: #888;
+    }
+
+    aside[aria-label="Exemplo de uso ruim"] .term-body .prompt {
+      color: #d66;
+    }
+
+    .term-body .prompt {
+      color: var(--accent-soft);
+    }
+
+    .term-body .ok {
+      color: #4ade80;
+    }
+
+    .list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .list li {
+      position: relative;
+      padding-left: 1.5rem;
+      color: #e2e2e2;
+    }
+
+    .list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 0.4rem;
+      height: 0.4rem;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .value-card {
+      border: 1px solid var(--panel-border);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.02);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: transform 0.2s, background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .value-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+      pointer-events: none;
+    }
+
+    .value-card h3 {
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
+    .value-card p {
+      margin: 0;
+      margin-top: 0.8rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+
+    .price-wrap {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 3rem 2vw;
+      border: 1px solid rgba(218, 119, 86, 0.3);
+      background: radial-gradient(circle at 50% 0%, rgba(218, 119, 86, 0.1), var(--panel));
+    }
+    
+    .price-wrap h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    .old-price {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .old-price span {
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
+
+    .new-price {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(3rem, 7vw, 4.5rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      font-weight: 700;
+    }
+
+    .new-price span {
+      color: var(--accent);
+    }
+
+    .outcome-grid {
+      margin-top: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .outcome-item {
+      border: 1px solid var(--panel-border);
+      border-radius: 16px;
+      padding: 1.2rem;
+      background: rgba(255, 255, 255, 0.02);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .final-cta {
+      text-align: center;
+      display: grid;
+      gap: 1.5rem;
+      justify-items: center;
+    }
+
+    .symbol-tape {
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      overflow: hidden;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 1rem 0;
+    }
+
+    .symbol-track {
+      display: flex;
+      gap: 3rem;
+      white-space: nowrap;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.85rem;
+      font-weight: 600;
+      animation: tape-run 30s linear infinite;
+    }
+
+    @keyframes tape-run {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    .roadmap-grid {
+      margin-top: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.2rem;
+    }
+
+    .step-card {
+      border: 1px solid var(--panel-border);
+      border-radius: 16px;
+      background: var(--panel);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      gap: 0.8rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(12px);
+    }
+
+    .step-card .num {
+      color: var(--accent-soft);
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .step-card h3 {
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
+    .step-card p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    .fit-grid {
+      margin-top: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.2rem;
+      align-items: stretch;
+    }
+
+    .fit-card {
+      border: 1px solid var(--panel-border);
+      border-radius: 16px;
+      padding: 1.8rem;
+      background: var(--panel);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(12px);
+    }
+
+    .fit-card h3 {
+      font-size: 1.2rem;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .fit-list {
+      margin: 1.2rem 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0.8rem;
+      flex-grow: 1;
+    }
+
+    .fit-list li {
+      padding-left: 1.4rem;
+      position: relative;
+      color: #ddd;
+      font-size: 0.95rem;
+    }
+
+    .fit-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.4em;
+      width: 0.35rem;
+      height: 0.35rem;
+      border-radius: 999px;
+    }
+
+    .fit-card.yes .fit-list li::before {
+      background: #4ade80;
+      box-shadow: 0 0 8px rgba(74, 222, 128, 0.5);
+    }
+
+    .fit-card.no .fit-list li::before {
+      background: #f87171;
+      box-shadow: 0 0 8px rgba(248, 113, 113, 0.5);
+    }
+
+    .authority {
+      display: grid;
+      grid-template-columns: 0.45fr 0.55fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .identity {
+      border: 1px solid var(--panel-border);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.02);
+      padding: 1.5rem;
+      display: grid;
+      justify-items: center;
+      text-align: center;
+      gap: 1.2rem;
+    }
+
+    .identity img {
+      width: 100%;
+      max-width: 220px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .identity small {
+      color: #f0f0f0;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .authority-points {
+      border: 1px solid var(--panel-border);
+      border-radius: 20px;
+      background: var(--panel);
+      padding: 2rem;
+      display: grid;
+      gap: 1.5rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .authority-points div {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1.5rem;
+    }
+
+    .authority-points div:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .authority-points strong {
+      color: var(--text);
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    .guarantee {
+      display: grid;
+      grid-template-columns: 0.4fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .badge-shield {
+      border: 1px solid rgba(218, 119, 86, 0.3);
+      background: radial-gradient(circle at 50% 50%, rgba(218, 119, 86, 0.15), transparent);
+      border-radius: 20px;
+      display: grid;
+      place-items: center;
+      padding: 2.5rem 1.5rem;
+      color: var(--accent-soft);
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .faq {
+      margin-top: 1.5rem;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .faq details {
+      border: 1px solid var(--panel-border);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.02);
+      padding: 1.2rem;
+      transition: background 0.2s;
+    }
+
+    .faq details[open] {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .faq summary {
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: #fff;
+      list-style: none;
+    }
+
+    .faq summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq p {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .sticky-cta {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 40;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(16px);
+      padding: 1rem;
+      box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .sticky-cta .inner {
+      width: min(1140px, 92vw);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .sticky-cta p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #fff;
+      font-weight: 500;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .author-photo-wrapper {
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+      background: rgba(20, 20, 20, 0.6);
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .author-photo-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Fallback para imagem vazia */
+    .author-photo-wrapper:empty::before {
+      content: 'Sua Foto Aqui';
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .author-bio {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 0 0 5.5rem;
+      color: #666;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    @media (max-width: 940px) {
+
+      .micro-proof,
+      .roadmap-grid,
+      .fit-grid,
+      .value-grid,
+      .outcome-grid,
+      .authority,
+      .about-grid,
+      .guarantee,
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 5rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .cta {
+        width: 100%;
+      }
+
+      .sticky-cta .inner {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+      }
+    }
+
+    /* 21st.dev Premium Animated Button Magic (Theme Aware) */
+    @property --gradient-angle {
+      syntax: "<angle>";
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    @property --gradient-percent {
+      syntax: "<percentage>";
+      initial-value: 5%;
+      inherits: false;
+    }
+
+    .cta-primary {
+      /* Merge our brand colors into 21st ShinyButton logic */
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(var(--accent), var(--accent)) padding-box,
+        conic-gradient(from var(--gradient-angle),
+          var(--accent) 0%,
+          var(--accent-soft) var(--gradient-percent),
+          #ffffff calc(var(--gradient-percent) * 2),
+          var(--accent-soft) calc(var(--gradient-percent) * 3),
+          var(--accent) 100%) border-box;
+      border: 1px solid transparent;
+      animation: rotate-gradient 4s linear infinite;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+      box-shadow: 0 8px 32px rgba(218, 119, 86, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+      z-index: 1;
+    }
+
+    /* Inner Dots Pattern from 21st.dev */
+    .cta-primary::before {
+      content: "";
+      position: absolute;
+      inset: 2px;
+      background: radial-gradient(circle at 10px 10px, rgba(255, 255, 255, 0.2) 2px, transparent 0) padding-box;
+      background-size: 20px 20px;
+      mask-image: conic-gradient(from calc(var(--gradient-angle) + 45deg), #000, transparent 30% 70%, #000);
+      border-radius: inherit;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .cta-primary:hover {
+      --gradient-percent: 20%;
+      transform: scale(1.05);
+      box-shadow: 0 16px 40px rgba(218, 119, 86, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+    }
+
+    @keyframes rotate-gradient {
+      to {
+        --gradient-angle: 360deg;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 1ms !important;
+        transition-duration: 1ms !important;
+      }
+
+      .symbol-track {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-bg" aria-hidden="true"></div>
+
+  <main class="site">
+    <section class="section">
+      <div class="hero narrow">
+        <img class="logo" src="./8a7545a9-25df-4b09-bb8e-98383d45fc52.png" alt="EduAi Academy" />
+        <span class="kicker">EduAi Academy</span>
+
+        <h1>
+          <span id="hero-typing" class="typing" data-text="Saia do nível básico e domine o Claude como operador"></span>
+        </h1>
+
+        <p class="lead">
+          Chega de tentar usar a IA e receber aquelas respostas robóticas que não servem pra nada. Vou te mostrar o passo a passo pra transformar o Claude no seu assistente, sem precisar saber uma linha de código ou inglês.
+        </p>
+
+        <div>
+          <a class="cta cta-primary" href="#oferta">Começar agora</a>
+        </div>
+
+        <div class="micro-proof" aria-label="Provas rápidas">
+          <span>Para puro iniciante</span>
+          <span>Uso na rotina comum</span>
+          <span>Sem termo técnico</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="symbol-tape" aria-hidden="true">
+      <div class="symbol-track">
+        <span>⚡ EDUAI ACADEMY</span>
+        <span>◆ CLAUDE OPERADOR</span>
+        <span>// SISTEMAS COM IA</span>
+        <span>▸ EXECUÇÃO REAL</span>
+        <span>n8n BÔNUS</span>
+        <span>+50 PROMPTS</span>
+        <span>+200 SKILLS</span>
+        <span>⚡ EDUAI ACADEMY</span>
+        <span>◆ CLAUDE OPERADOR</span>
+        <span>// SISTEMAS COM IA</span>
+        <span>▸ EXECUÇÃO REAL</span>
+        <span>n8n BÔNUS</span>
+        <span>+50 PROMPTS</span>
+        <span>+200 SKILLS</span>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="vsl panel">
+        <span class="kicker">VSL</span>
+        <div class="vsl-screen" aria-label="Espaço reservado para vídeo VSL">
+          <span class="play-pill"><span class="play-dot"></span> Área de vídeo VSL</span>
+        </div>
+        <p class="caption">Vê como a parada funciona na prática antes de decidir</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="two-col">
+        <article class="panel copy-box">
+          <span class="kicker">A real</span>
+          <h2>Já cansou da galera querendo te vender cursinho de ChatGPT?</h2>
+          <p>
+            O que acontece é que a maioria pede qualquer coisa pra IA...<br />
+            recebe uma resposta engessada, com aquela cara de robô...<br />
+            e acha que inteligência artificial é só perda de tempo.<br /><br />
+            A culpa não é da IA, relaxa.<br /><br />
+            O erro tá no jeito que tão te ensinando a usar.
+          </p>
+        </article>
+
+        <aside class="panel copy-box" aria-label="Exemplo de uso ruim">
+          <span class="kicker">Na prática</span>
+          <div class="terminal">
+            <div class="term-head">
+              <div class="lights"><span></span><span></span><span></span></div>
+              <span>modo genérico</span>
+            </div>
+            <pre class="term-body"><span class="prompt">$ "me ajuda com meu negócio"</span>
+resposta ampla, sem contexto
+sem plano acionável
+sem prioridade de execução</pre>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="two-col">
+        <article class="panel copy-box">
+          <span class="kicker">Contexto</span>
+          <h2>O Claude não lê mentes. Ele faz o que você orienta.</h2>
+          <p>
+            A partir do momento que você é direto nas instruções...<br />
+            a mágica acontece. Ele para de mandar textos inúteis e te entrega o trabalho pronto pra você usar na hora.
+          </p>
+        </article>
+
+        <aside class="panel copy-box" aria-label="Exemplo de operação">
+          <span class="kicker">Modo operador</span>
+          <div class="terminal">
+            <div class="term-head">
+              <div class="lights"><span></span><span></span><span></span></div>
+              <span>eduai // operação</span>
+            </div>
+            <pre class="term-body"><span class="prompt">$ "crie meu plano semanal com IA"</span>
+▸ define prioridades
+▸ monta sistema simples
+▸ estrutura execução diária
+<span class="ok">✓ pronto para aplicar</span></pre>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <article class="panel narrow copy-box">
+        <span class="kicker">Aulas</span>
+        <h2>É isso que você vai dominar aqui na EduAi Academy</h2>
+        <ul class="list">
+          <li>Fazer o Claude trabalhar pra você de verdade</li>
+          <li>Montar seus próprios sistemas com IA</li>
+          <li>Usar o n8n pra colocar tarefas no piloto automático (bônus)</li>
+          <li>Ganhar várias horas livres na sua semana</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="section">
+      <article class="panel narrow copy-box">
+        <span class="kicker">Roadmap</span>
+        <h2>Do zero à operação: o caminho dentro da formação</h2>
+        <div class="roadmap-grid" role="list">
+          <article class="step-card" role="listitem">
+            <span class="num">01</span>
+            <h3>Visão Real</h3>
+            <p>O que trava a maioria é achar que isso tudo é técnico demais. Nós evitamos as teorias chatas e focamos só no que gera resultado real no seu dia a dia.</p>
+          </article>
+          <article class="step-card" role="listitem">
+            <span class="num">02</span>
+            <h3>A Estrutura Claude</h3>
+            <p>Vou te dar os moldes confiáveis pra você nunca mais ter uma resposta ruim da IA. É só copiar, adaptar e aplicar.</p>
+          </article>
+          <article class="step-card" role="listitem">
+            <span class="num">03</span>
+            <h3>Sistemas Reutilizáveis</h3>
+            <p>Montou uma vez, tá pronto. Você vai criar sistemas que rodam sozinhos pras suas tarefas frequentes.</p>
+          </article>
+          <article class="step-card" role="listitem">
+            <span class="num">04</span>
+            <h3>Piloto Automático (n8n)</h3>
+            <p>Aprenda a conectar aplicativos para não ter que ficar copiando e colando os mesmos dados toda hora.</p>
+          </article>
+          <article class="step-card" role="listitem">
+            <span class="num">05</span>
+            <h3>Rotina Certa</h3>
+            <p>Como organizar sua semana para a IA fazer o trabalho repetitivo enquanto você gerencia o negócio.</p>
+          </article>
+          <article class="step-card" role="listitem">
+            <span class="num">06</span>
+            <h3>Escalando com Apoio</h3>
+            <p>Como produzir 10x mais resultados no mesmo tempo, sem sobrecarregar sua rotina.</p>
+          </article>
+        </div>
+      </article>
+    </section>
+
+    <section class="section">
+      <article class="panel narrow copy-box">
+        <span class="kicker">Pacote Cheio</span>
+        <h2>O que você vai levar</h2>
+
+        <div class="value-grid" role="list" aria-label="Itens inclusos">
+          <article class="value-card" role="listitem">
+            <h3>Saindo do Zero ao Controle</h3>
+            <p>A abordagem é direta. Do zero absoluto até você comandar o Claude para gerar soluções úteis na sua mesa de trabalho logo na primeira semana.</p>
+          </article>
+
+          <article class="value-card" role="listitem">
+            <h3>Bônus: Piloto Automático</h3>
+            <p>Aprenda a conectar aplicativos no n8n para zerar as tarefas repetitivas.</p>
+          </article>
+
+          <article class="value-card" role="listitem">
+            <h3>+50 Prompts Prontos</h3>
+            <p>Um arquivo completo pra você copiar, colar e turbinar sua execução no primeiro dia.</p>
+          </article>
+
+          <article class="value-card" role="listitem">
+            <h3>Banco de Comandos Flexíveis</h3>
+            <p>Cansou de bater cabeça conversando com a IA? Pegue nossos comandos estruturados, jogue na sua tarefa e veja o resultado surgir na hora.</p>
+          </article>
+        </div>
+      </article>
+    </section>
+
+    <section class="section">
+      <article class="panel narrow copy-box">
+        <span class="kicker">A real</span>
+        <h2>Isso aqui cai como uma luva se você:</h2>
+        <div class="fit-grid">
+          <div class="fit-card yes">
+            <h3>Faz sentido pra você se:</h3>
+            <ul class="fit-list">
+              <li>Tá vendo todo mundo lucrar e acelerar com IA e quer entrar no jogo sem estudar teoria chata.</li>
+              <li>Foge de código e tela de programação, mas quer o trabalho feito de um jeito rápido.</li>
+              <li>Não aguenta mais o ChatGPT entregando respostas óbvias e lotadas de emojis.</li>
+            </ul>
+          </div>
+          <div class="fit-card no">
+            <h3>Não faz sentido pra você se:</h3>
+            <ul class="fit-list">
+              <li>Você é profissional de TI, já sabe programar e gosta de lidar com código.</li>
+              <li>Você está buscando um botão mágico para ter resultados sem precisar aplicar nada.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section">
+      <article class="panel narrow copy-box">
+        <span class="kicker">Quem é quem</span>
+        <h2>Feito para quem busca resultados de verdade</h2>
+        <div class="authority">
+          <aside class="identity">
+            <img src="./8a7545a9-25df-4b09-bb8e-98383d45fc52.png" alt="EduAi Academy" />
+            <small>EduAi Academy</small>
+            <p>Onde você aprende a resolver tarefas difíceis com inteligência.</p>
+          </aside>
+          <div class="authority-points">
+            <div>
+              <strong>Direto ao ponto:</strong>
+              <p>A dinâmica é simples. Você entende o processo e aplica no seu trabalho diário. Sem jargões técnicos para complicar.</p>
+            </div>
+            <div>
+              <strong>Acessível para iniciantes:</strong>
+              <p>Nós avançamos no seu ritmo. Você vai aprender sem se sentir perdido na frente de ferramentas complexas.</p>
+            </div>
+            <div>
+              <strong>Foco em otimizar seu tempo:</strong>
+              <p>Nosso foco não são certificados. O objetivo real é criar sistemas que te devolvem horas livres na sua agenda.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section">
+      <article class="panel narrow copy-box">
+        <span class="kicker">Sobre mim</span>
+        <div class="about-grid">
+          <div class="author-photo-wrapper">
+            <img src="./222ac8c8-a458-4167-9c42-fa238f11e7c9-whatsapp-no-media-3A3932BF333654F57929.jpg" alt="Eduardo Manoel" />
+          </div>
+          <div class="author-bio">
+            <h2>Eduardo Manoel</h2>
+            <p>Se as dicas e comandos que eu entrego de graça lá nos Reels já resolvem parte da sua vida, você não faz ideia do peso do que tem do lado de dentro.</p>
+            <p>O conteúdo aberto do Instagram é só um pedaço mínimo do iceberg. Aqui na EduAi Academy eu abro o maquinário completo. Você vê a engrenagem operando de ponta a ponta, copiando o exato modelo que eu uso para liquidar tarefas complexas sem precisar bater cabeça.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="oferta" class="section">
+      <article class="panel narrow copy-box price-wrap">
+        <span class="kicker">Decisão</span>
+        <h2>Um conhecimento desse custaria 1.000 reais facilmente</h2>
+
+        <p class="old-price">Diante do tempo livre que você ganha, <span>R$ 1.000,00</span> seria um valor comum.</p>
+        <p>Mas hoje, você tem acesso por apenas 12x de R$20,37</p>
+        <p class="new-price"><span>12x R$20,37</span></p>
+
+        <div>
+          <a class="cta cta-primary" href="#final-cta">Garantir acesso</a>
+        </div>
+
+        <p>A taxa é única e o acesso cai na hora.</p>
+      </article>
+    </section>
+
+    <section class="section">
+      <article class="panel narrow copy-box">
+        <span class="kicker">O Próximo Nível</span>
+        <h2>Como será o seu dia a dia:</h2>
+
+        <div class="outcome-grid" role="list">
+          <div class="outcome-item" role="listitem">Resolvendo tarefas pesadas em minutos</div>
+          <div class="outcome-item" role="listitem">Produzindo materiais sem parecer que vieram de um robô</div>
+          <div class="outcome-item" role="listitem">Desobstruindo sua agenda apertada</div>
+          <div class="outcome-item" role="listitem">Perdendo o medo de operar ferramentas novas</div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section">
+      <article class="panel narrow copy-box">
+        <span class="kicker">Proteção Total</span>
+        <div class="guarantee">
+          <div class="badge-shield">7 dias de<br />Risco Zero</div>
+          <div class="panel">
+            <h2>Se o conteúdo não for útil, nós devolvemos o seu valor inteiro.</h2>
+            <p>
+              A regra é transparente: você entra, assiste e aplica. Se o conteúdo for muito técnico ou se você não perceber melhora na sua rotina nos primeiros 7 dias, é só nos avisar. Reembolsamos o valor integral sem tentar te vender outra coisa ou questionar sua decisão. O peso do risco fica inteiramente conosco.
+            </p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section">
+      <article class="panel narrow copy-box">
+        <span class="kicker">Dúvidas Frequentes</span>
+        <h2>Ainda em dúvida? Vamos esclarecer</h2>
+        <div class="faq">
+          <details>
+            <summary>Preciso saber programar para começar?</summary>
+            <p>Não. O curso foi feito para quem está começando do zero. Não vamos usar termos complicados, o foco é te dar o atalho prático para executar o que precisa.</p>
+          </details>
+          <details>
+            <summary>Serve para a minha área de atuação?</summary>
+            <p>Sim. O treinamento te ensina como ajustar o comportamento do Claude para a sua operação. Você ensina sua rotina e o sistema se adapta.</p>
+          </details>
+          <details>
+            <summary>Como sei que não é apenas material teórico?</summary>
+            <p>Porque nosso foco é a execução diária. Vamos direto para os comandos que você aplica para resolver as tarefas. E você tem 7 dias de garantia para comprovar.</p>
+          </details>
+          <details>
+            <summary>Quando meu acesso é liberado?</summary>
+            <p>Imediatamente após a aprovação do pagamento. O sistema envia a sua senha de acesso direto para o seu e-mail.</p>
+          </details>
+        </div>
+      </article>
+    </section>
+
+    <section id="final-cta" class="section">
+      <article class="panel narrow final-cta">
+        <span class="kicker">Agora é com você</span>
+        <h2>Não perca mais tempo lutando contra ferramentas. Comece a operar num nível melhor!</h2>
+        <a class="cta cta-primary" href="#oferta">Quero destravar o sistema</a>
+      </article>
+    </section>
+  </main>
+
+  <div class="sticky-cta" role="region" aria-label="Chamada de conversão fixa">
+    <div class="inner">
+      <p><strong>EduAi Academy</strong> por <span class="accent">12x R$20,37</span> hoje</p>
+      <a class="cta cta-primary" href="#oferta">Garantir meu acesso</a>
+    </div>
+  </div>
+
+  <p class="footer">EduAi Academy</p>
+
+  <script>
+    (function () {
+      const el = document.getElementById("hero-typing");
+      if (!el) return;
+
+      const text = el.dataset.text || "";
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      const highlight = (value) =>
+        value
+          .replace(/Claude/g, '<span class="accent">Claude</span>')
+          .replace(/operador/g, '<span class="accent">operador</span>');
+
+      const finish = () => {
+        el.classList.add("is-done");
+      };
+
+      if (reduceMotion) {
+        el.innerHTML = highlight(text);
+        finish();
+        return;
+      }
+
+      let i = 0;
+      const tick = () => {
+        i += 1;
+        el.innerHTML = highlight(text.slice(0, i));
+
+        if (i < text.length) {
+          const delay = i < 22 ? 34 : 21;
+          setTimeout(tick, delay);
+        } else {
+          setTimeout(finish, 300);
+        }
+      };
+
+      setTimeout(tick, 220);
+    })();
+  </script>
+
+  <!-- UI/UX Pro Max + 21st.dev Magic: Framer Motion Vanilla Script -->
+  <script type="module">
+    import { animate, inView, stagger } from "https://cdn.jsdelivr.net/npm/motion@11.11.13/+esm";
+
+    // 1. Magnetic Shiny Buttons (21st.dev logic ported to Vanilla DOM + Framer Motion)
+    const magneticButtons = document.querySelectorAll('.cta-primary');
+    magneticButtons.forEach(btn => {
+      // Prevent CSS transition from fighting with Motion spring
+      btn.style.transition = 'box-shadow 0.3s ease, background 0.3s ease';
+
+      btn.addEventListener("mousemove", (e) => {
+        const rect = btn.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const distanceX = e.clientX - centerX;
+        const distanceY = e.clientY - centerY;
+
+        animate(btn, {
+          x: distanceX * 0.4,
+          y: distanceY * 0.4
+        }, {
+          type: "spring", stiffness: 300, damping: 20, mass: 0.5
+        });
+      });
+
+      btn.addEventListener("mouseleave", () => {
+        animate(btn, { x: 0, y: 0 }, { type: "spring", stiffness: 300, damping: 20, mass: 0.5 });
+      });
+    });
+
+    // 2. High-End Staggered Reveals
+    inView(".micro-proof", (info) => {
+      const items = info.target.querySelectorAll("span");
+      items.forEach(i => { i.style.opacity = 0; i.style.transform = "translateY(20px)"; });
+      animate(items, { opacity: 1, y: 0 }, { delay: stagger(0.1, { start: 0.2 }), duration: 0.6, easing: [0.16, 1, 0.3, 1] });
+    });
+
+    inView(".value-grid", (info) => {
+      const cards = info.target.querySelectorAll(".value-card");
+      cards.forEach(c => { c.style.opacity = 0; c.style.transform = "scale(0.95)"; });
+      animate(cards, { opacity: 1, scale: 1 }, { delay: stagger(0.15), duration: 0.5, easing: "ease-out" });
+    });
+
+    inView(".roadmap-grid", (info) => {
+      const steps = info.target.querySelectorAll(".step-card");
+      steps.forEach(s => { s.style.opacity = 0; s.style.transform = "translateY(30px)"; });
+      animate(steps, { opacity: 1, y: 0 }, { delay: stagger(0.2), duration: 0.6 });
+    });
+
+    // Floating animations for Logo & VSL Screen
+    animate(".logo", { y: [-5, 5] }, { repeat: Infinity, direction: "alternate", duration: 3, easing: "ease-in-out" });
+    animate(".vsl-screen", { y: [-8, 8] }, { repeat: Infinity, direction: "alternate", duration: 4, easing: "ease-in-out" });
+
+  </script>
+</body>
+
+</html>

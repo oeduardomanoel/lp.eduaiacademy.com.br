@@ -1,0 +1,96 @@
+[    2385ms] [WARNING] Multiple GoTrueClient instances detected in the same browser context. It is not an error, but this should be avoided as it may produce undefined behavior when used concurrently under the same storage key. @ https://21st.dev/_next/static/chunks/80841-25f069ea8b5e3189.js:5
+[    2728ms] [WARNING] [PostHog.js] You have already initialized PostHog! Re-initializing is a no-op @ https://21st.dev/_next/static/chunks/2d2d3c67-6fafac9e748883a7.js:0
+[    2926ms] [WARNING] [PostHog.js] You have already initialized PostHog! Re-initializing is a no-op @ https://21st.dev/_next/static/chunks/2d2d3c67-6fafac9e748883a7.js:0
+[    3170ms] [ERROR] %c << query #1 %capiKeys.getOrCreate%c %O 
+    background-color: #3fb0d8;
+    color: white;
+    padding: 2px;
+   
+    background-color: #3fb0d8;
+    color: white;
+    padding: 2px;
+  ; font-weight: bold; 
+    background-color: #3fb0d8;
+    color: white;
+    padding: 2px;
+  ; font-weight: normal; {input: undefined, result: TRPCClientError: User must be authenticated
+    at a.from (https://21st.dev/_next/static/chunks/683…, elapsedMs: 442, context: Object} @ https://21st.dev/_next/static/chunks/68363-67078794d10d4f67.js:7
+[    3757ms] [LOG] [Featurebase SDK] Initializing SDK! @ https://do.featurebase.app/js/sdk.js:246
+[    4123ms] [LOG] [Featurebase SDK] Messenger initialization already in progress, checking if data changed @ https://do.featurebase.app/js/sdk.js:246
+[    4123ms] [LOG] [Featurebase SDK] Data changed, canceling previous request @ https://do.featurebase.app/js/sdk.js:246
+[    4124ms] [LOG] [Featurebase SDK] Previous request canceled due to new request @ https://do.featurebase.app/js/sdk.js:246
+[    4138ms] [LOG] [Featurebase SDK] Messenger initialization already in progress, checking if data changed @ https://do.featurebase.app/js/sdk.js:246
+[    4139ms] [LOG] [Featurebase SDK] Data changed, canceling previous request @ https://do.featurebase.app/js/sdk.js:246
+[    4140ms] [LOG] [Featurebase SDK] Previous request canceled due to new request @ https://do.featurebase.app/js/sdk.js:246
+[    4193ms] [LOG] [Featurebase SDK] Messenger initialization already in progress, checking if data changed @ https://do.featurebase.app/js/sdk.js:246
+[    4193ms] [LOG] [Featurebase SDK] Data changed, canceling previous request @ https://do.featurebase.app/js/sdk.js:246
+[    4194ms] [LOG] [Featurebase SDK] Previous request canceled due to new request @ https://do.featurebase.app/js/sdk.js:246
+[    4235ms] [LOG] [Featurebase SDK] Messenger initialization already in progress, checking if data changed @ https://do.featurebase.app/js/sdk.js:246
+[    4235ms] [LOG] [Featurebase SDK] Same data as previous request, waiting for completion @ https://do.featurebase.app/js/sdk.js:246
+[    4284ms] [LOG] [Featurebase SDK] Messenger initialization already in progress, checking if data changed @ https://do.featurebase.app/js/sdk.js:246
+[    4285ms] [LOG] [Featurebase SDK] Same data as previous request, waiting for completion @ https://do.featurebase.app/js/sdk.js:246
+[    4427ms] [ERROR] %c << query #2 %capiKeys.getOrCreate%c %O 
+    background-color: #3fb0d8;
+    color: white;
+    padding: 2px;
+   
+    background-color: #3fb0d8;
+    color: white;
+    padding: 2px;
+  ; font-weight: bold; 
+    background-color: #3fb0d8;
+    color: white;
+    padding: 2px;
+  ; font-weight: normal; {input: undefined, result: TRPCClientError: User must be authenticated
+    at a.from (https://21st.dev/_next/static/chunks/683…, elapsedMs: 249, context: Object} @ https://21st.dev/_next/static/chunks/68363-67078794d10d4f67.js:7
+[    5707ms] [WARNING] An iframe which has both allow-scripts and allow-same-origin for its sandbox attribute can escape its sandboxing. @ https://do.featurebase.app/js/sdk.js:240
+[    6717ms] [ERROR] %c << query #3 %capiKeys.getOrCreate%c %O 
+    background-color: #3fb0d8;
+    color: white;
+    padding: 2px;
+   
+    background-color: #3fb0d8;
+    color: white;
+    padding: 2px;
+  ; font-weight: bold; 
+    background-color: #3fb0d8;
+    color: white;
+    padding: 2px;
+  ; font-weight: normal; {input: undefined, result: TRPCClientError: User must be authenticated
+    at a.from (https://21st.dev/_next/static/chunks/683…, elapsedMs: 284, context: Object} @ https://21st.dev/_next/static/chunks/68363-67078794d10d4f67.js:7
+[   10961ms] [ERROR] %c << query #4 %capiKeys.getOrCreate%c %O 
+    background-color: #3fb0d8;
+    color: white;
+    padding: 2px;
+   
+    background-color: #3fb0d8;
+    color: white;
+    padding: 2px;
+  ; font-weight: bold; 
+    background-color: #3fb0d8;
+    color: white;
+    padding: 2px;
+  ; font-weight: normal; {input: undefined, result: TRPCClientError: User must be authenticated
+    at a.from (https://21st.dev/_next/static/chunks/683…, elapsedMs: 243, context: Object} @ https://21st.dev/_next/static/chunks/68363-67078794d10d4f67.js:7
+[   13966ms] [WARNING] The resource https://21st.dev/_next/static/css/4de4661c6388537a.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://21st.dev/mcp:0
+[   92023ms] [LOG] TroubleshootingSection received selectedIde: claude-code @ https://21st.dev/_next/static/chunks/60971-34327654d9882832.js:12
+[   95346ms] [WARNING] The resource https://21st.dev/_next/static/css/4de4661c6388537a.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://21st.dev/mcp:0
+[  124334ms] [LOG] [Featurebase SDK] Initializing SDK! @ https://do.featurebase.app/js/sdk.js:246
+[  124658ms] [LOG] [Featurebase SDK] Messenger initialization already in progress, checking if data changed @ https://do.featurebase.app/js/sdk.js:246
+[  124658ms] [LOG] [Featurebase SDK] Data changed, canceling previous request @ https://do.featurebase.app/js/sdk.js:246
+[  124659ms] [LOG] [Featurebase SDK] Previous request canceled due to new request @ https://do.featurebase.app/js/sdk.js:246
+[  124706ms] [LOG] [Featurebase SDK] Messenger initialization already in progress, checking if data changed @ https://do.featurebase.app/js/sdk.js:246
+[  124706ms] [LOG] [Featurebase SDK] Data changed, canceling previous request @ https://do.featurebase.app/js/sdk.js:246
+[  124708ms] [LOG] [Featurebase SDK] Previous request canceled due to new request @ https://do.featurebase.app/js/sdk.js:246
+[  124756ms] [LOG] [Featurebase SDK] Messenger initialization already in progress, checking if data changed @ https://do.featurebase.app/js/sdk.js:246
+[  124756ms] [LOG] [Featurebase SDK] Data changed, canceling previous request @ https://do.featurebase.app/js/sdk.js:246
+[  124757ms] [LOG] [Featurebase SDK] Previous request canceled due to new request @ https://do.featurebase.app/js/sdk.js:246
+[  124790ms] [LOG] [Featurebase SDK] Messenger initialization already in progress, checking if data changed @ https://do.featurebase.app/js/sdk.js:246
+[  124790ms] [LOG] [Featurebase SDK] Same data as previous request, waiting for completion @ https://do.featurebase.app/js/sdk.js:246
+[  124842ms] [LOG] [Featurebase SDK] Messenger initialization already in progress, checking if data changed @ https://do.featurebase.app/js/sdk.js:246
+[  124842ms] [LOG] [Featurebase SDK] Same data as previous request, waiting for completion @ https://do.featurebase.app/js/sdk.js:246
+[  127316ms] [WARNING] An iframe which has both allow-scripts and allow-same-origin for its sandbox attribute can escape its sandboxing. @ https://do.featurebase.app/js/sdk.js:240
+[  129171ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ https://accounts.google.com/v3/signin/identifier?opparams=%253F&dsh=S-2112414794%3A1776097150023369&access_type=offline&client_id=198013683996-1vso7vtnd096s1e9c4tkh4qqev0enm95.apps.googleusercontent.com&o2v=1&redirect_uri=https%3A%2F%2Fclerk.21st.dev%2Fv1%2Foauth_callback&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid&service=lso&state=5pr4938vljktwq69t436x1wdxgi6rse43aw4bxs0&flowName=GeneralOAuthFlow&continue=https%3A%2F%2Faccounts.google.com%2Fsignin%2Foauth%2Fconsent%3Fauthuser%3Dunknown%26part%3DAJi8hAPIpsOOu2mreKL60-DOyjbTg2Jre-2CgPATUIcZQeKCjutdlXcQdy5wy5XOMctpmAVLTmWPZXfHZZSLAbA7LbnoDP-OsHrcGHpdcZF97BCAs7TsEmWj_wmt3ZhuN42dMc6IWWHzvi9FGND6X1vkDJYFWMrniDP4LqM9YVS50Vf59HHkHG0ZrtXMEI2WIcPsiqrUV6tIN7ddH735L-2hxuWnm_sz58U7Cq1r_rOkghwhD8JGn5dACFwKjmkseKJr4cJyJpi2j4qxwHLFgxUnN3_vdIZ0P0qXIw0SCNSvdMklNGQG8HojrEp9wSTiyaq-Vi3gtGXLUktlJInyiFFOrz-EhV9yp79_7nBXcrXVE00cT-Zy6mSTxxrXLHkcZcmahEJXT6GJYsF4-KL46uzkA5d-4dwcq85HIpAPL_NbYPJZy95LWgO9WGUBao7k8p4ovVQ98wvC7wTuC5E4wQSARoIceNyioA%26flowName%3DGeneralOAuthFlow%26as%3DS-2112414794%253A1776097150023369%26client_id%3D198013683996-1vso7vtnd096s1e9c4tkh4qqev0enm95.apps.googleusercontent.com%26requestPath%3D%252Fsignin%252Foauth%252Fconsent%23&app_domain=https%3A%2F%2Fclerk.21st.dev&rart=ANgoxcfdcvIavTM4FCYxjlctNhjPkp5ba2xMDZAb1DadoIvKd7QfwY9a4cTvjsLGA_TiIKcVFWQsB9cGJ63JgNS8-MkUXlCXAUxMyXc896D5aMOZuX7Z8Sw:0
+[  129191ms] [LOG] %c%s color: red; background: yellow; font-size: 24px; AVISO @ https://www.gstatic.com/_/mss/boq-identity/_/js/k=boq-identity.AccountsSignInUi.pt_BR.WQSSTCnGujs.es5.O/am=Kf8GAABCEUgGwP__HzIAIACCaOB6FoAmEBkAAAAAAAAAALBCAAAaAQ/d=1/excm=_b,_tp,identifierview/ed=1/dg=0/wt=2/ujg=1/rs=AOaEmlE2brFQ-oLydQ51KWUpANXA9laYow/dti=1/m=_b,_tp:468
+[  129192ms] [LOG] %c%s font-size: 18px; O uso deste console pode permitir que invasores falsifiquem sua identidade para roubar informações por meio de um ataque chamado Self-XSS.
+Não insira nem cole códigos que você não conheça. @ https://www.gstatic.com/_/mss/boq-identity/_/js/k=boq-identity.AccountsSignInUi.pt_BR.WQSSTCnGujs.es5.O/am=Kf8GAABCEUgGwP__HzIAIACCaOB6FoAmEBkAAAAAAAAAALBCAAAaAQ/d=1/excm=_b,_tp,identifierview/ed=1/dg=0/wt=2/ujg=1/rs=AOaEmlE2brFQ-oLydQ51KWUpANXA9laYow/dti=1/m=_b,_tp:468

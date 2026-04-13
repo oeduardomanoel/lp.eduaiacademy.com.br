@@ -1,0 +1,159 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - main [ref=e4]:
+      - main [ref=e5]:
+        - generic [ref=e8]:
+          - generic [ref=e13]:
+            - generic [ref=e14]:
+              - generic [ref=e15]:
+                - generic [ref=e18]:
+                  - button "21st logo 21st" [ref=e20] [cursor=pointer]:
+                    - generic [ref=e21]:
+                      - generic [ref=e23]:
+                        - img "21st logo"
+                      - generic [ref=e25]: 21st
+                      - img
+                  - button "Close sidebar" [ref=e27] [cursor=pointer]:
+                    - img
+                - generic [ref=e30]:
+                  - img
+                  - textbox "Search" [ref=e31] [cursor=pointer]
+                  - generic:
+                    - img
+                    - generic: K
+              - generic [ref=e32]:
+                - generic [ref=e35]:
+                  - link "Home" [ref=e37] [cursor=pointer]:
+                    - /url: /
+                    - img [ref=e38]
+                    - generic [ref=e41]: Home
+                  - generic [ref=e42]:
+                    - heading "Explore" [level=3] [ref=e44]
+                    - generic [ref=e45]:
+                      - button "Components" [ref=e46] [cursor=pointer]:
+                        - img [ref=e47]
+                        - generic [ref=e49]: Components
+                        - img [ref=e51]
+                      - button "Agent Templates" [ref=e53] [cursor=pointer]:
+                        - img [ref=e54]
+                        - generic [ref=e56]: Agent Templates
+                        - img [ref=e58]
+                      - link "MCP" [ref=e60] [cursor=pointer]:
+                        - /url: /mcp
+                        - img [ref=e61]
+                        - generic [ref=e67]: MCP
+                  - generic [ref=e68]:
+                    - heading "Build" [level=3] [ref=e70]
+                    - generic [ref=e71]:
+                      - button "Agents" [ref=e72] [cursor=pointer]:
+                        - img [ref=e73]
+                        - generic [ref=e88]: Agents
+                        - img [ref=e90]
+                      - link "1Code" [ref=e92] [cursor=pointer]:
+                        - /url: /1code
+                        - generic [ref=e93]:
+                          - img [ref=e94]
+                          - img [ref=e96]
+                        - generic [ref=e98]: 1Code
+                        - img [ref=e99]
+                      - link "Magic Chat" [ref=e103] [cursor=pointer]:
+                        - /url: /magic
+                        - img [ref=e104]
+                        - generic [ref=e108]: Magic Chat
+                        - img [ref=e109]
+                - generic [ref=e115]:
+                  - generic [ref=e120]:
+                    - generic [ref=e121]:
+                      - generic [ref=e122]: 21st Agents SDK
+                      - paragraph [ref=e123]: The fastest way to build and deploy AI agents.
+                    - link [ref=e124] [cursor=pointer]:
+                      - /url: https://21st.dev/agents
+                    - generic [ref=e125]:
+                      - link [ref=e126] [cursor=pointer]:
+                        - /url: https://21st.dev/agents
+                        - text: Read more
+                      - button [ref=e127] [cursor=pointer]: Dismiss
+                  - generic [ref=e130]:
+                    - generic [ref=e131]:
+                      - generic [ref=e132]: We're in YC
+                      - paragraph [ref=e133]: 21st is backed by Y Combinator. Excited for what's ahead!
+                    - link [ref=e134] [cursor=pointer]:
+                      - /url: https://www.ycombinator.com/companies/1code-21stdev
+                    - generic [ref=e135]:
+                      - link "Read more" [ref=e136] [cursor=pointer]:
+                        - /url: https://www.ycombinator.com/companies/1code-21stdev
+                      - button "Dismiss" [ref=e137] [cursor=pointer]
+              - generic [ref=e139]:
+                - generic [ref=e140]:
+                  - button "Toggle theme" [ref=e141] [cursor=pointer]:
+                    - img
+                  - button "Settings" [ref=e142] [cursor=pointer]:
+                    - img
+                - button "Log in" [ref=e143] [cursor=pointer]:
+                  - generic [ref=e144]: Log in
+            - button "Toggle Sidebar" [ref=e145] [cursor=pointer]
+          - generic [ref=e148]:
+            - generic [ref=e150]:
+              - generic [ref=e153]: MCP
+              - generic [ref=e154]:
+                - generic:
+                  - button "Search":
+                    - img
+                    - generic: Search
+                    - generic:
+                      - img
+                      - generic: K
+            - generic [ref=e156]:
+              - generic [ref=e157]:
+                - heading "Tools" [level=2] [ref=e158]
+                - generic [ref=e159]:
+                  - generic [ref=e161]:
+                    - img [ref=e163]
+                    - generic [ref=e166]:
+                      - generic [ref=e167]:
+                        - heading "Inspiration Search" [level=3] [ref=e168]
+                        - generic [ref=e169]: Free
+                      - paragraph [ref=e170]: Semantic search across thousands of components. Your agent automatically finds relevant UI examples and patterns before writing code — no manual browsing needed.
+                  - generic [ref=e172]:
+                    - img [ref=e174]
+                    - generic [ref=e177]:
+                      - generic [ref=e178]:
+                        - heading "SVG Icon Search" [level=3] [ref=e179]
+                        - generic [ref=e180]: Free
+                      - paragraph [ref=e181]:
+                        - text: Search across thousands of brand SVG icons powered by
+                        - link "svgl" [ref=e182] [cursor=pointer]:
+                          - /url: https://svgl.app
+                        - text: . Your agent finds and inserts the right logo or icon directly into your code.
+                  - generic [ref=e184]:
+                    - img [ref=e186]
+                    - generic [ref=e190]:
+                      - generic [ref=e191]:
+                        - heading "Magic Generate" [level=3] [ref=e192]
+                        - generic [ref=e193]: Pro
+                      - paragraph [ref=e194]: Generate 5 polished UI variants of any component. A browser page opens with the options — pick the one you like and the code is sent back to your agent automatically.
+                      - generic [ref=e195]:
+                        - button "Subscribe for $20/m" [ref=e196] [cursor=pointer]
+                        - link "Learn more" [ref=e197] [cursor=pointer]:
+                          - /url: /magic
+              - heading "API Key" [level=2] [ref=e199]
+              - generic [ref=e202]:
+                - heading "Install" [level=2] [ref=e203]
+                - paragraph [ref=e204]: Select your IDE and follow the instructions below.
+              - navigation [ref=e206]:
+                - button "Claude Code" [ref=e207] [cursor=pointer]:
+                  - generic [ref=e210]: Claude Code
+                - button "Cursor" [ref=e211] [cursor=pointer]:
+                  - generic [ref=e213]: Cursor
+                - button "Windsurf" [ref=e214] [cursor=pointer]:
+                  - generic [ref=e216]: Windsurf
+                - button "Cline" [ref=e217] [cursor=pointer]:
+                  - generic [ref=e219]: Cline
+              - button "Troubleshooting" [ref=e224] [cursor=pointer]:
+                - generic [ref=e225]: Troubleshooting
+                - img [ref=e226]
+    - region "Notifications alt+T"
+  - alert [ref=e228]
+  - generic:
+    - iframe
+    - iframe
