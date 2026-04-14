@@ -4,10 +4,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>EduAi Academy</title>
+  <title>EduAi Academy — Domine o Claude como Operador</title>
   <meta name="description"
-    content="EduAi Academy: aprenda a usar o Claude como operador, criar sistemas com IA e automatizar sua rotina com método prático."
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    content="EduAi Academy: aprenda a usar o Claude como operador, criar sistemas com IA e automatizar sua rotina com método prático." />
+
+  <!-- Open Graph (WhatsApp, Facebook, LinkedIn) -->
+  <meta property="og:title" content="EduAi Academy — Domine o Claude como Operador" />
+  <meta property="og:description" content="Saia do nível básico. Aprenda a usar IA de verdade no seu dia a dia, sem precisar de código ou inglês." />
+  <meta property="og:image" content="https://lp.eduaiacademy.com.br/images/og-cover.webp" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://lp.eduaiacademy.com.br" />
+  <meta property="og:locale" content="pt_BR" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="EduAi Academy — Domine o Claude como Operador" />
+  <meta name="twitter:description" content="Saia do nível básico. Aprenda a usar IA de verdade no seu dia a dia, sem precisar de código ou inglês." />
+  <meta name="twitter:image" content="https://lp.eduaiacademy.com.br/images/og-cover.webp" />
+
+  <!-- Preload LCP element (hero logo) -->
+  <link rel="preload" as="image" href="./8a7545a9-25df-4b09-bb8e-98383d45fc52.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="./8a7545a9-25df-4b09-bb8e-98383d45fc52.png" type="image/png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
@@ -1000,6 +1022,67 @@
       }
     }
 
+    /* Modules Bento Grid */
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .module-card {
+      border: 1px solid var(--panel-border);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.02);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+      height: 100%;
+    }
+    .module-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(218, 119, 86, 0.4);
+    }
+    .mod-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: var(--bg);
+      display: block;
+    }
+    .mod-img img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .mod-info {
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .mod-badge {
+      font-size: 0.75rem;
+      color: var(--accent-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .module-card h3 {
+      font-size: 1.05rem;
+      margin: 0;
+      color: #fff;
+    }
+    
+    @media (max-width: 940px) {
+      .modules-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 640px) {
+      .modules-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       * {
         animation-duration: 1ms !important;
@@ -1130,15 +1213,75 @@ sem prioridade de execução</pre>
     </section>
 
     <section class="section">
-      <article class="panel narrow copy-box">
-        <span class="kicker">Aulas</span>
-        <h2>É isso que você vai dominar aqui na EduAi Academy</h2>
-        <ul class="list">
-          <li>Fazer o Claude trabalhar pra você de verdade</li>
-          <li>Montar seus próprios sistemas com IA</li>
-          <li>Usar o n8n pra colocar tarefas no piloto automático (bônus)</li>
-          <li>Ganhar várias horas livres na sua semana</li>
-        </ul>
+      <article class="panel copy-box">
+        <span class="kicker">Conteúdo Exclusivo</span>
+        <h2>A trilha exata que você vai dominar por dentro</h2>
+        
+        <div class="modules-grid">
+          <div class="module-card">
+            <div class="mod-img"><img src="./images/Target_compass_with_202604140841.webp" alt="Começando do Jeito Certo" loading="lazy" width="600" height="600" /></div>
+            <div class="mod-info">
+              <span class="mod-badge">Módulo 0</span>
+              <h3>Começando do Jeito Certo</h3>
+            </div>
+          </div>
+          <div class="module-card">
+            <div class="mod-img"><img src="./images/Unlocked_padlock_with_202604140843.webp" alt="Destravar a IA" loading="lazy" width="600" height="600" /></div>
+            <div class="mod-info">
+              <span class="mod-badge">Módulo 1</span>
+              <h3>Destravar a IA</h3>
+            </div>
+          </div>
+          <div class="module-card">
+            <div class="mod-img"><img src="./images/Anthropic_Claude_AI_202604140845.webp" alt="Dominando o Claude" loading="lazy" width="600" height="600" /></div>
+            <div class="mod-info">
+              <span class="mod-badge">Módulo 2</span>
+              <h3>Dominando o Claude</h3>
+            </div>
+          </div>
+          <div class="module-card">
+            <div class="mod-img"><img src="./images/Claude_AI_logo_202604140846.webp" alt="Criando com Claude Code" loading="lazy" width="600" height="600" /></div>
+            <div class="mod-info">
+              <span class="mod-badge">Módulo 3</span>
+              <h3>Criando com Claude Code</h3>
+            </div>
+          </div>
+          <div class="module-card">
+            <div class="mod-img"><img src="./images/Dashboard_charts_data_202604140848.webp" alt="Dados e Relatórios" loading="lazy" width="600" height="600" /></div>
+            <div class="mod-info">
+              <span class="mod-badge">Módulo 4</span>
+              <h3>Dados, Relatórios e Dashboards</h3>
+            </div>
+          </div>
+          <div class="module-card">
+            <div class="mod-img"><img src="./images/Holographic_camera_lens_202604140850.webp" alt="Conteúdo e Imagens" loading="lazy" width="600" height="600" /></div>
+            <div class="mod-info">
+              <span class="mod-badge">Módulo 5</span>
+              <h3>Conteúdo e Imagens com IA</h3>
+            </div>
+          </div>
+          <div class="module-card">
+            <div class="mod-img"><img src="./images/N8n_logo_connected_202604140851.webp" alt="Automação com n8n" loading="lazy" width="600" height="600" /></div>
+            <div class="mod-info">
+              <span class="mod-badge">Módulo 6 (Bônus)</span>
+              <h3>Automação com n8n</h3>
+            </div>
+          </div>
+          <div class="module-card">
+            <div class="mod-img"><img src="./images/Futuristic_architectural_bluepri…_202604140852.webp" alt="Sistema Real" loading="lazy" width="600" height="600" /></div>
+            <div class="mod-info">
+              <span class="mod-badge">Módulo 7</span>
+              <h3>Sistema Real (Como Usar na Prática)</h3>
+            </div>
+          </div>
+          <div class="module-card">
+            <div class="mod-img"><img src="./images/Holographic_file_folders_202604140854.webp" alt="Pack Prompts e Skills" loading="lazy" width="600" height="600" /></div>
+            <div class="mod-info">
+              <span class="mod-badge">Módulo 8</span>
+              <h3>Pack de Prompts e Skills</h3>
+            </div>
+          </div>
+        </div>
       </article>
     </section>
 
@@ -1267,7 +1410,7 @@ sem prioridade de execução</pre>
         <span class="kicker">Sobre mim</span>
         <div class="about-grid">
           <div class="author-photo-wrapper">
-            <img src="./222ac8c8-a458-4167-9c42-fa238f11e7c9-whatsapp-no-media-3A3932BF333654F57929.jpg" alt="Eduardo Manoel" />
+            <img src="./222ac8c8-a458-4167-9c42-fa238f11e7c9-whatsapp-no-media-3A3932BF333654F57929.jpg" alt="Eduardo Manoel" loading="lazy" width="400" height="400" />
           </div>
           <div class="author-bio">
             <h2>Eduardo Manoel</h2>
@@ -1407,59 +1550,66 @@ sem prioridade de execução</pre>
     })();
   </script>
 
-  <!-- UI/UX Pro Max + 21st.dev Magic: Framer Motion Vanilla Script -->
+  <!-- UI/UX Pro Max + 21st.dev Magic: Framer Motion Vanilla Script (Deferred) -->
   <script type="module">
-    import { animate, inView, stagger } from "https://cdn.jsdelivr.net/npm/motion@11.11.13/+esm";
+    const loadAnimations = async () => {
+      const { animate, inView, stagger } = await import("https://cdn.jsdelivr.net/npm/motion@11.11.13/+esm");
 
-    // 1. Magnetic Shiny Buttons (21st.dev logic ported to Vanilla DOM + Framer Motion)
-    const magneticButtons = document.querySelectorAll('.cta-primary');
-    magneticButtons.forEach(btn => {
-      // Prevent CSS transition from fighting with Motion spring
-      btn.style.transition = 'box-shadow 0.3s ease, background 0.3s ease';
+      // 1. Magnetic Shiny Buttons (21st.dev logic ported to Vanilla DOM + Framer Motion)
+      const magneticButtons = document.querySelectorAll('.cta-primary');
+      magneticButtons.forEach(btn => {
+        btn.style.transition = 'box-shadow 0.3s ease, background 0.3s ease';
 
-      btn.addEventListener("mousemove", (e) => {
-        const rect = btn.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        const distanceX = e.clientX - centerX;
-        const distanceY = e.clientY - centerY;
+        btn.addEventListener("mousemove", (e) => {
+          const rect = btn.getBoundingClientRect();
+          const centerX = rect.left + rect.width / 2;
+          const centerY = rect.top + rect.height / 2;
+          const distanceX = e.clientX - centerX;
+          const distanceY = e.clientY - centerY;
 
-        animate(btn, {
-          x: distanceX * 0.4,
-          y: distanceY * 0.4
-        }, {
-          type: "spring", stiffness: 300, damping: 20, mass: 0.5
+          animate(btn, {
+            x: distanceX * 0.4,
+            y: distanceY * 0.4
+          }, {
+            type: "spring", stiffness: 300, damping: 20, mass: 0.5
+          });
+        });
+
+        btn.addEventListener("mouseleave", () => {
+          animate(btn, { x: 0, y: 0 }, { type: "spring", stiffness: 300, damping: 20, mass: 0.5 });
         });
       });
 
-      btn.addEventListener("mouseleave", () => {
-        animate(btn, { x: 0, y: 0 }, { type: "spring", stiffness: 300, damping: 20, mass: 0.5 });
+      // 2. High-End Staggered Reveals
+      inView(".micro-proof", (info) => {
+        const items = info.target.querySelectorAll("span");
+        items.forEach(i => { i.style.opacity = 0; i.style.transform = "translateY(20px)"; });
+        animate(items, { opacity: 1, y: 0 }, { delay: stagger(0.1, { start: 0.2 }), duration: 0.6, easing: [0.16, 1, 0.3, 1] });
       });
-    });
 
-    // 2. High-End Staggered Reveals
-    inView(".micro-proof", (info) => {
-      const items = info.target.querySelectorAll("span");
-      items.forEach(i => { i.style.opacity = 0; i.style.transform = "translateY(20px)"; });
-      animate(items, { opacity: 1, y: 0 }, { delay: stagger(0.1, { start: 0.2 }), duration: 0.6, easing: [0.16, 1, 0.3, 1] });
-    });
+      inView(".value-grid", (info) => {
+        const cards = info.target.querySelectorAll(".value-card");
+        cards.forEach(c => { c.style.opacity = 0; c.style.transform = "scale(0.95)"; });
+        animate(cards, { opacity: 1, scale: 1 }, { delay: stagger(0.15), duration: 0.5, easing: "ease-out" });
+      });
 
-    inView(".value-grid", (info) => {
-      const cards = info.target.querySelectorAll(".value-card");
-      cards.forEach(c => { c.style.opacity = 0; c.style.transform = "scale(0.95)"; });
-      animate(cards, { opacity: 1, scale: 1 }, { delay: stagger(0.15), duration: 0.5, easing: "ease-out" });
-    });
+      inView(".roadmap-grid", (info) => {
+        const steps = info.target.querySelectorAll(".step-card");
+        steps.forEach(s => { s.style.opacity = 0; s.style.transform = "translateY(30px)"; });
+        animate(steps, { opacity: 1, y: 0 }, { delay: stagger(0.2), duration: 0.6 });
+      });
 
-    inView(".roadmap-grid", (info) => {
-      const steps = info.target.querySelectorAll(".step-card");
-      steps.forEach(s => { s.style.opacity = 0; s.style.transform = "translateY(30px)"; });
-      animate(steps, { opacity: 1, y: 0 }, { delay: stagger(0.2), duration: 0.6 });
-    });
+      // Floating animations for Logo & VSL Screen
+      animate(".logo", { y: [-5, 5] }, { repeat: Infinity, direction: "alternate", duration: 3, easing: "ease-in-out" });
+      animate(".vsl-screen", { y: [-8, 8] }, { repeat: Infinity, direction: "alternate", duration: 4, easing: "ease-in-out" });
+    };
 
-    // Floating animations for Logo & VSL Screen
-    animate(".logo", { y: [-5, 5] }, { repeat: Infinity, direction: "alternate", duration: 3, easing: "ease-in-out" });
-    animate(".vsl-screen", { y: [-8, 8] }, { repeat: Infinity, direction: "alternate", duration: 4, easing: "ease-in-out" });
-
+    // Load animations only when browser is idle (non-blocking)
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadAnimations);
+    } else {
+      setTimeout(loadAnimations, 1000);
+    }
   </script>
 </body>
 

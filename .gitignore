@@ -1,0 +1,7 @@
+node_modules/
+.agent/
+.agents/
+.kilo/
+.kilocode/
+.playwright-mcp/
+scripts/
