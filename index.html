@@ -855,34 +855,6 @@
       line-height: 1.6;
     }
 
-    .sticky-cta {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 40;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(10, 10, 10, 0.85);
-      backdrop-filter: blur(16px);
-      padding: 1rem;
-      box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.4);
-    }
-
-    .sticky-cta .inner {
-      width: min(1140px, 92vw);
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-    }
-
-    .sticky-cta p {
-      margin: 0;
-      font-size: 0.95rem;
-      color: #fff;
-      font-weight: 500;
-    }
 
     .about-grid {
       display: grid;
@@ -928,7 +900,7 @@
 
     .footer {
       text-align: center;
-      padding: 0 0 5.5rem;
+      padding: 0 0 2rem;
       color: #666;
       font-size: 0.85rem;
       font-weight: 500;
@@ -950,19 +922,17 @@
 
       .hero {
         min-height: auto;
-        padding-top: 5rem;
+        padding-top: 1rem;
+      }
+      
+      .logo {
+        width: 120px;
       }
     }
 
     @media (max-width: 640px) {
       .cta {
         width: 100%;
-      }
-
-      .sticky-cta .inner {
-        flex-direction: column;
-        align-items: stretch;
-        text-align: center;
       }
     }
 
@@ -1501,12 +1471,6 @@ sem prioridade de execução</pre>
     </section>
   </main>
 
-  <div class="sticky-cta" role="region" aria-label="Chamada de conversão fixa">
-    <div class="inner">
-      <p><strong>EduAi Academy</strong> por <span class="accent">12x R$20,37</span> hoje</p>
-      <a class="cta cta-primary" href="#oferta">Garantir meu acesso</a>
-    </div>
-  </div>
 
   <p class="footer">EduAi Academy</p>
 
